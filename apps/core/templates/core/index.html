@@ -1,0 +1,25 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+    Home
+{% endblock title %}
+
+{% block main %}
+    <h1>Seja Bem Vindo</h1>
+{% endblock main %}
+
+{% block footer %}
+   <div class="container">
+  <div class="row">
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      One of three columns
+    </div>
+    <div class="col-sm">
+      <a href="{% url 'logout' %}">Logout</a>
+    </div>
+  </div>
+</div>
+{% endblock footer %}
