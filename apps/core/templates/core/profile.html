@@ -1,0 +1,40 @@
+{% extends 'base.html' %} 
+
+{% block title %}
+    Profile
+{% endblock title %}
+
+{% block main %}
+<br><br><br>
+    <h3 class="display-3 text-center">Olá {{ usuario.funcionario.nome }}, seja bem vindo!</h1>
+            {% if usuario.funcionario.empresa %}
+                <p class="text-left">Percebemos que você já está vinculado a uma empresa, caso queira edita-la e só clicar no link abaixo.</p><a href>Editar Empresa</a>
+            {% else %} 
+                <a href>Criar Empresa</a> | <a href="{% url 'logout' %}">Sair</a>
+            {% endif %} 
+    
+    <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Criar Empresa</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Nova</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Special title treatment</h5>
+        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock main %}
+
+{% block footer %}
+     {% include 'footer.html' %}
+{% endblock footer %}
