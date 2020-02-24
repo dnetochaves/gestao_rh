@@ -1,25 +1,35 @@
 {% extends 'base.html' %} 
-
+{% load static %}
 {% block title %}
     Profile
 {% endblock title %}
 
 {% block main %}
 <br><br><br>
-    <h3 class="display-3 text-center">Olá {{ usuario.funcionario.nome }}, seja bem vindo!</h1>
-            {% if usuario.funcionario.empresa %}
-                <p class="text-left">Percebemos que você já está vinculado a uma empresa, caso queira edita-la e só clicar no link abaixo.</p><a href>Editar Empresa</a>
-            {% else %} 
-                <a href>Criar Empresa</a> | <a href="{% url 'logout' %}">Sair</a>
-            {% endif %} 
+         
     
-    <div class="row">
+<div class="card mb-3">
+  <img class="card-img-top" src="{% static 'imagens/img1.jpg' %}" width="781" height="180" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">
+           {% if usuario.funcionario.empresa %}
+                <p class="text-left"> Olá {{ usuario.funcionario.nome }} percebemos que você já está vinculado a empresa  <a href="{% url 'edite_empresa' usuario.funcionario.empresa.id %}" class="badge badge-primary">{{ usuario.funcionario.empresa }}</a>.</p>
+                
+            {% else %} 
+                <a href="{% url 'create_empresa' %}">Criar Empresa</a> | <a href="{% url 'logout' %}">Sair</a>
+            {% endif %} 
+    </h5>
+    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+  </div>
+</div>
+
+<div class="row">
   <div class="col-sm-6">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title">Criar Empresa</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-        <a href="#" class="btn btn-primary">Nova</a>
+        <h5 class="card-title">Gerenciar Funcionário</h5>
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
@@ -27,12 +37,12 @@
     <div class="card">
       <div class="card-body">
         <h5 class="card-title">Special title treatment</h5>
-        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
         <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   </div>
 </div>
+
 {% endblock main %}
 
 {% block footer %}
