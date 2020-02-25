@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock  %}
+
+{% block main %}
+  <br><br><br>
+ 
+      
+      <div class="table-responsive">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for funcionario in object_list %}
+    <tr>
+      <th scope="row">{{ funcionario.id }}</th>
+      <td><a href="{% url 'funcionarios_update' funcionario.id %}">{{ funcionario }}</a></td>
+       <td><a class="btn btn-danger" href="{% url 'funcionarios_delete' funcionario.id %}"><i class="fas fa-user-times"></i></a></td>
+    </tr>
+     {% endfor %}
+  </table>
+</div>
+ 
+{% endblock  %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock  %}
