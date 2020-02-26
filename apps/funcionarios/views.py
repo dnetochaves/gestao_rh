@@ -36,5 +36,3 @@ class FuncionariosCreate(CreateView):
         funcionario.user = User.objects.create(username=username)
         funcionario.save()
         return super(FuncionariosCreate, self).form_valid(form)
-
-     

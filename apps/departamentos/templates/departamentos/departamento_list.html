@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock  %}
+
+{% block main %}
+  <br><br><br>
+ 
+      
+      <div class="table-responsive">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nome</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for departamentos in object_list %}
+    <tr>
+      <th scope="row">{{ departamentos.id }}</th>
+      <td><a href="#">{{ departamentos.nome }}</a></td>
+       <td><a class="btn btn-danger" href="#"><i class="fas fa-user-times"></i></a></td>
+    </tr>
+     {% endfor %}
+  </table>
+</div>
+ 
+{% endblock  %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock  %}
