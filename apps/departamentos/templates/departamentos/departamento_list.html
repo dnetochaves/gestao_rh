@@ -21,8 +21,8 @@
    {% for departamentos in object_list %}
     <tr>
       <th scope="row">{{ departamentos.id }}</th>
-      <td><a href="#">{{ departamentos.nome }}</a></td>
-       <td><a class="btn btn-danger" href="#"><i class="fas fa-user-times"></i></a></td>
+      <td><a href="{% url 'departamento_updtae' departamentos.id %}">{{ departamentos.nome }}</a></td>
+       <td><a class="btn btn-danger" href="{% url 'departamento_delete' departamentos.id %}"><i class="fas fa-user-times"></i></a></td>
     </tr>
      {% endfor %}
   </table>

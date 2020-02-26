@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import ListView
 from .models import Departamento
+from django.urls import reverse_lazy
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
 # Create your views here.
@@ -22,3 +23,10 @@ class CreateDepartamentos(CreateView):
         departamento.save()
         return super(CreateDepartamentos, self).form_valid(form)
         
+class UpdateDepartamentos(UpdateView):
+    model = Departamento
+    fields = ['nome']
+
+class DeleteDepartamentos(DeleteView):
+    model = Departamento
+    success_url = reverse_lazy('profile')

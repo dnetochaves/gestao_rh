@@ -13,5 +13,5 @@ class Departamento(models.Model):
     
 
     def get_absolute_url(self):
-        return reverse('list_departamentos')
+        return reverse('profile')
     

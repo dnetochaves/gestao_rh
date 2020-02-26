@@ -17,5 +17,5 @@ class Funcionario(models.Model):
         return self.nome
 
     def get_absolute_url(self):
-        return reverse('funcionarios_list')
+        return reverse('profile')
         
