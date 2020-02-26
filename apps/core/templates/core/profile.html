@@ -44,8 +44,29 @@
   </div>
 </div>
 
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Gerenciar Documentos</h5>
+        <a href="{% url 'funcionarios_list' %}" class="btn btn-primary"><i class="fas fa-sticky-note"></i></a>
+        <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i></a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Gerenciar Empresas</h5>
+        <a href="{% url 'list_departamentos' %}" class="btn btn-primary"><i class="fas fa-sticky-note"></i></a>
+        <a href="{% url 'create_departamentos' %}" class="btn btn-primary"><i class="fas fa-plus"></i></a> 
+      </div>
+    </div>
+  </div>
 </div>
 
+</div>
+<br><br>
 {% endblock main %}
 
 {% block footer %}

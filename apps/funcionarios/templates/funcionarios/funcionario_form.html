@@ -5,12 +5,34 @@
 {% endblock  %}
 
 {% block main %}
-<br><br><br>
+<div class="container">
+  <!-- Content here -->
+
 <form method="POST">
     {% csrf_token %}
     {{ form|bootstrap }}
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
 </form>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Tipo</th>
+      <th scope="col">Caminho</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for documento in object.documento_set.all %}
+    <tr>
+      <th scope="row">{{ documento }}</th>
+      <td><a href="{{ documento.arquivo.url }}">{{ documento.arquivo.url }}</a></td>
+    </tr>
+    {% endfor %} 
+  </tbody>
+</table>
+<a href="{% url 'create_documento'  object.id  %}" class="btn btn-primary btn-lg btn-block">Novo Documento</a>
+</div>
+<br><br>
+
 {% endblock  %}
 
 {% block footer %}
