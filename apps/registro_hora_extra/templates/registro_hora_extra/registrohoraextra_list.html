@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock  %}
+
+{% block main %}
+  <br><br><br>
+ 
+      
+      <div class="table-responsive">
+  <table class="table">
+    <thead>
+    <tr>
+      <th scope="col">Motivo</th>
+      <th scope="col">Funcionário</th>
+      <th scope="col">Horas</th>
+      <th scope="col">#</th>
+    </tr>
+  </thead>
+  <tbody>
+   {% for registro in object_list %}
+    <tr>
+      <th scope="row">{{ registro.motivo }}</th>
+      <td><a href="#">{{ registro.funcionario }}</a></td>
+      <td><a href="#">{{ registro.horas }}</a></td>
+      <td><a class="btn btn-danger" href="#"><i class="fas fa-user-times"></i></a></td>
+    </tr>
+     {% endfor %}
+  </table>
+</div>
+ 
+{% endblock  %}
+
+{% block footer %}
+    {% include 'footer.html' %}
+{% endblock  %}
