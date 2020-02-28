@@ -29,7 +29,10 @@
     {% endfor %} 
   </tbody>
 </table>
-<a href="{% url 'create_documento'  object.id  %}" class="btn btn-primary btn-lg btn-block">Novo Documento</a>
+{% if object %}
+    <a href="{% url 'create_documento'  object.id  %}" class="btn btn-primary btn-lg btn-block">Novo Documento</a>
+{% endif %}
+
 </div>
 <br><br>
 

@@ -22,9 +22,9 @@
    {% for registro in object_list %}
     <tr>
       <th scope="row">{{ registro.motivo }}</th>
-      <td><a href="#">{{ registro.funcionario }}</a></td>
+      <td><a href="{% url 'hora_extra_update' registro.id %}">{{ registro.funcionario }}</a></td>
       <td><a href="#">{{ registro.horas }}</a></td>
-      <td><a class="btn btn-danger" href="#"><i class="fas fa-user-times"></i></a></td>
+      <td><a class="btn btn-danger" href="{% url 'hora_extra_delete' registro.id %}"><i class="fas fa-user-times"></i></a></td>
     </tr>
      {% endfor %}
   </table>

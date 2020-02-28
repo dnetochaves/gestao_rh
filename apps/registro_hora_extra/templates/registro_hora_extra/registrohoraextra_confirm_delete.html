@@ -1,19 +1,19 @@
 {% extends 'base.html' %}
 {% load bootstrap %}
 {% block title %}
-    Departamentos
+    Empresa
 {% endblock  %}
 
 {% block main %}
+<br><br><br>
 <form method="POST">
     {% csrf_token %}
-    {{ form|bootstrap }}
-    <button type="submit" class="btn btn-primary">Salvar</button>
+    {{ form }}
+    <h1 class="display-4">Tem certeza que deseja deletar {{ object }}</h1>
+    <button type="submit" class="btn btn-danger">Confirmar</button>
 </form>
-
 {% endblock  %}
 
 {% block footer %}
     {% include 'footer.html' %}
 {% endblock  %}
-

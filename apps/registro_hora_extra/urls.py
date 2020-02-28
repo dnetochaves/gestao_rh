@@ -1,18 +1,19 @@
 from django.urls import include
 from .views import (
     HoraExtraList,
-    #FuncionariosUpdate, 
-    #FuncionariosDelete, 
-    #FuncionariosCreate
+    HoraExtraUpdate, 
+    HoraExtraDelete, 
+    HoraExtraCreate
 )
+
 from django.urls import path
 
 
 urlpatterns = [
-    path('hora_extra_list', HoraExtraList.as_view(), name='hora_extra_list'),
-    #path('funcionarios_create/', FuncionariosCreate.as_view(), name='funcionarios_create'),
-    #path('editar/<int:pk>', FuncionariosUpdate.as_view(), name='funcionarios_update'),
-    #path('deletar/<int:pk>', FuncionariosDelete.as_view(), name='funcionarios_delete'),
+    path('list/', HoraExtraList.as_view(), name='hora_extra_list'),
+    path('novo/', HoraExtraCreate.as_view(), name='hora_extra_create'),
+    path('editar/<int:pk>/', HoraExtraUpdate.as_view(), name='hora_extra_update'),
+    path('deletar/<int:pk>/', HoraExtraDelete.as_view(), name='hora_extra_delete'),
 ]
 
 
