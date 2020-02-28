@@ -130,4 +130,4 @@ dmypy.json
 
  *.vscode/
 
- /gestao_rh.pem
+ gestao_rh.pem
