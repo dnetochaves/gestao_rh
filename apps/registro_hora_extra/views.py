@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from .models import RegistroHoraExtra
+from .forms import RegistroHoraExtraForm
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 
@@ -19,13 +20,14 @@ class HoraExtraList(ListView):
 
 class HoraExtraCreate(CreateView):
     model = RegistroHoraExtra
-    fields = ['motivo', 'horas']
+    form_class = RegistroHoraExtraForm
 
-    def form_valid(self, form):
-        hora_extra = form.save(commit=False)
-        hora_extra.funcionario.id = self.request.user.funcionario.id
-        hora_extra.save()
-        return super(HoraExtraCreate, self).form_valid(form)
+    def get_form_kwargs(self):
+        kwargs = super(HoraExtraCreate, self).get_form_kwargs()
+        kwargs.update({'user': self.request.user})
+        return kwargs
+
+    
 
 class HoraExtraUpdate(UpdateView):
      model = RegistroHoraExtra
