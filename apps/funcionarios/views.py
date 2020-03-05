@@ -5,6 +5,10 @@ from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.contrib.auth.models import User
+import io
+from django.http import FileResponse
+from reportlab.pdfgen import canvas
+
 
 # Create your views here.
 def home(request):
@@ -36,3 +40,29 @@ class FuncionariosCreate(CreateView):
         funcionario.user = User.objects.create(username=username)
         funcionario.save()
         return super(FuncionariosCreate, self).form_valid(form)
+
+
+def pdf_reportlab(request):
+    respose = HttpResponse(content_type='application/pdf')
+    respose['Content-Disposition'] = 'attachment; filename="mypdf.pdf"'
+
+    # Create a file-like buffer to receive PDF data.
+    buffer = io.BytesIO()
+
+    # Create the PDF object, using the buffer as its "file."
+    p = canvas.Canvas(buffer)
+
+    palavras = ['palavra1', 'palavra2', 'palavra3']
+
+    y = 790
+    for palavra in palavras:
+        p.drawString(10, y, palavra)
+        y-= 40
+    # Close the PDF object cleanly, and we're done.
+    p.showPage()
+    p.save()
+
+    pdf = buffer.getvalue()
+    buffer.close()
+    respose.write(pdf)
+    return respose

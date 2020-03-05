@@ -7,6 +7,7 @@ from .views import (
     FuncionariosCreate
 )
 from django.urls import path
+from .views import pdf_reportlab
 
 
 urlpatterns = [
@@ -15,4 +16,5 @@ urlpatterns = [
     path('funcionarios_create/', FuncionariosCreate.as_view(), name='funcionarios_create'),
     path('editar/<int:pk>', FuncionariosUpdate.as_view(), name='funcionarios_update'),
     path('deletar/<int:pk>', FuncionariosDelete.as_view(), name='funcionarios_delete'),
+    path('pdf-reportlab', pdf_reportlab, name='pdf-reportlab')
 ]
