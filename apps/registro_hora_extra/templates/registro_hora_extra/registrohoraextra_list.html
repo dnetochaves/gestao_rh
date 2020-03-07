@@ -5,29 +5,43 @@
 {% endblock  %}
 
 {% block main %}
-  <br><br><br>
- 
-      
-      <div class="table-responsive">
-  <table class="table">
-    <thead>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'profile' %}">Perfil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Lista de Horas Extras</li>
+  </ol>
+</nav>
+<div class="container">
+<table class="table table-sm table-hover">
+<ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" href="{% url 'hora_extra_create' %}"><i class="fas fa-plus"></i></a>
+  </li>
+</ul>
+
+  <thead>
     <tr>
       <th scope="col">Motivo</th>
       <th scope="col">Funcionário</th>
       <th scope="col">Horas</th>
-      <th scope="col">#</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
-   {% for registro in object_list %}
+  {% for registro in object_list %}
     <tr>
       <th scope="row">{{ registro.motivo }}</th>
-      <td><a href="{% url 'hora_extra_update' registro.id %}">{{ registro.funcionario }}</a></td>
-      <td><a href="#">{{ registro.horas }}</a></td>
-      <td><a class="btn btn-danger" href="{% url 'hora_extra_delete' registro.id %}"><i class="fas fa-user-times"></i></a></td>
+      <td>{{ registro.funcionario }}</td>
+      <td>{{ registro.horas }}</td>
+      <td>
+      <a class="btn btn-danger" href="{% url 'hora_extra_delete' registro.id %}"><i class="fas fa-trash-alt" style="font-size:12px"></i></a>
+      <a class="btn btn-info" href="{% url 'hora_extra_update' registro.id %}"><i class="fas fa-edit" style="font-size:12px"></i></a>
+      </td>
     </tr>
-     {% endfor %}
-  </table>
+  {% endfor %}
+  </tbody>
+</table>  
 </div>
  
 {% endblock  %}

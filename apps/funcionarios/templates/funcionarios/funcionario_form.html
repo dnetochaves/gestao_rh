@@ -6,67 +6,109 @@
 {% endblock  %}
 
 {% block main %}
-<div class="container">
-  <!-- Content here -->
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="{% url 'index' %}">Inicio</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'profile' %}">Perfil</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Formulário Funcionários</li>
+  </ol>
+</nav>
+<div id="accordion">
+  <div class="card">
+    <div class="card-header" id="headingOne">
+      <h5 class="mb-0">
+        <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Formulário
+        </button>
+      </h5>
+    </div>
 
-<form method="POST">
-    {% csrf_token %}
-    {{ form|bootstrap }}
-    <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
-</form>
-<table class="table">
-  <thead>
-    <tr>
-     <th scope="col">Tipo</th>
-      <th scope="col">Caminho</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for documento in object.documento_set.all %}
-    <tr>
-      <th scope="row">{{ documento }}</th>
-      <td><a href="{{ documento.arquivo.url }}">{{ documento.arquivo.url }}</a></td>
-    </tr>
-    {% endfor %} 
-  </tbody>
-</table>
-
-
-{% if object %}
-    <a href="{% url 'create_documento'  object.id  %}" class="btn btn-primary btn-lg btn-block">Novo Documento</a>
-   {% endif %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Motivo</th>
-      <th scope="col">Horas</th>
-      <th scope="col">Utilizada</th>
-    </tr>
-  </thead>
-  <tbody>
-  {% for registo_hora in object.registrohoraextra_set.all %}
-    <tr>
-      <th scope="row">{{ registo_hora.motivo }}</th>
-      <td><a href="{% url 'hora_extra_update' registo_hora.id %}">{{ registo_hora.horas }}</a></td>
-      <th scope="row">{{ registo_hora.utilizadas }}</th>
-    </tr>
-    {% endfor %} 
-  </tbody>
-</table>
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
+    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
       <div class="card-body">
-        <h5 class="card-title">Total de horas</h5>
-        <p class="card-text">{{ object.total_horas_extra }}</p>
+        <form method="POST">
+          {% csrf_token %}
+          {{ form|bootstrap }}
+          <button type="submit" class="btn btn-primary btn-lg btn-block">Salvar</button>
+       </form>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingTwo">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+          Documentos
+        </button>
+      </h5>
+    </div>
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+      <div class="card-body">
+        <table class="table">
+          <thead>
+            <tr>
+            <th scope="col">Tipo</th>
+              <th scope="col">Caminho</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for documento in object.documento_set.all %}
+            <tr>
+              <th scope="row">{{ documento }}</th>
+              <td><a href="{{ documento.arquivo.url }}">{{ documento.arquivo.url }}</a></td>
+            </tr>
+            {% endfor %} 
+          </tbody>
+        </table>
+
+
+        {% if object %}
+            <a href="{% url 'create_documento'  object.id  %}" class="btn btn-primary btn-lg btn-block">Novo Documento</a>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header" id="headingThree">
+      <h5 class="mb-0">
+        <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+          Horas Extras
+        </button>
+      </h5>
+    </div>
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+      <div class="card-body">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Motivo</th>
+                <th scope="col">Horas</th>
+                <th scope="col">Utilizada</th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for registo_hora in object.registrohoraextra_set.all %}
+              <tr>
+                <th scope="row">{{ registo_hora.motivo }}</th>
+                <td><a href="{% url 'hora_extra_update' registo_hora.id %}">{{ registo_hora.horas }}</a></td>
+                <th scope="row">{{ registo_hora.utilizadas }}</th>
+              </tr>
+              {% endfor %} 
+            </tbody>
+          </table>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">Total de horas</h5>
+                  <p class="card-text">{{ object.total_horas_extra }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
       </div>
     </div>
   </div>
 </div>
-{% if object %}
-   
-{% endif %}
-<br><br>
 {% endblock  %}
 
 {% block footer %}

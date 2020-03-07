@@ -5,54 +5,120 @@
 {% endblock title %}
 
 {% block main %}
-<br>
-<div class="container-fluid">
- 
-<div class="card mb-3">
-  <img class="card-img-top" src="{% static 'imagens/empreendedorismo-capa.jpg' %}" width="781" height="180" alt="Card image cap">
-  <div class="card-body">
-    <h5 class="card-title">
-           {% if usuario.funcionario.empresa %}
-                <p class="text-left"> Olá {{ usuario.funcionario.nome }} percebemos que você já está vinculado a empresa  <a href="{% url 'edite_empresa' usuario.funcionario.empresa.id %}" class="badge badge-primary">{{ usuario.funcionario.empresa }}</a>.</p>
+<ul class="nav justify-content-end " style="background-color: #21D98B;">
+  <li class="nav-item">
+    <a class="nav-link active text-secondary" href="{% url 'funcionarios_list' %}"><i class="fa fa-list"></i></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary" href="{% url 'funcionarios_create' %}"><i class="fa fa-user-plus"></i></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary" href="{% url 'hora_extra_list' %}"><i class="fa fa-user-clock"></i></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary" href="{% url 'hora_extra_create' %}"><i class="fa fa-hourglass-half"></i></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary" href="{% url 'list_departamentos' %}"><i class="fa fa-bezier-curve"></i></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary" href="{% url 'create_departamentos' %}"><i class="fa fa-hourglass-half"></i></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link text-secondary" href="{% url 'edite_empresa' usuario.funcionario.empresa.id %}"><i class="fas fa-globe"></i></a>
+  </li>
+</ul>
+<div class="jumbotron jumbotron-fluid" style="background-color: #21D98B;">
+  <div class="container">
+  {% if usuario.funcionario.empresa %}
+    <h1 class="display-4 text-center">
+       Seja bem vindo {{ usuario.funcionario.nome }}
+    </h1>
+    <p class="lead">
+        
+                <p class="text-left"> Você está vinculado a empresa  {{ usuario.funcionario.empresa }}</p>
                 
-            {% else %} 
+        {% else %} 
                 <a href="{% url 'create_empresa' %}">Criar Empresa</a> | <a href="{% url 'logout' %}">Sair</a>
-            {% endif %} 
-    </h5>
-    <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        {% endif %} 
+    </p>
   </div>
 </div>
 
-<div class="row">
-  <div class="col-sm-12">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title"><i class="fas fa-tasks"></i> Gerenciar</h5>
-        <a href="{% url 'funcionarios_list' %}" class="btn btn-primary"><i class="fas fa-sticky-note"></i> Lista de Funcionários</a>
-        <a href="{% url 'funcionarios_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Novo Funcionário</a>
-        <a href="{% url 'hora_extra_list' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Lista Horas Extras</a>
-        <a href="{% url 'hora_extra_create' %}" class="btn btn-primary"><i class="fas fa-plus"></i> Add Horas Extras</a>
-        <a href="{% url 'list_departamentos' %}" class="btn btn-primary"><i class="fas fa-sticky-note"></i> Lista de Departamentos</a>
-        <a href="{% url 'create_departamentos' %}" class="btn btn-primary"><i class="fas fa-plus"></i>Add Departamento</a> 
-        <a href="{% url 'pdf-reportlab' %}" class="btn btn-primary"><i class="fas fa-plus"></i>Relatório ReportLab</a> 
-        <div class="dropdown">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown link
-  </a>
-
-  <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </div>
-</div>
-      </div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm">
+        <a class="nav-link text-secondary" href="{% url 'relatorio_funcionario_html' %}"><i class="fas fa-globe"></i></a>
+        <a class="nav-link text-secondary" href="{% url 'exportar-csv' %}"><i class="fas fa-file-csv"></i></a>
+        <a class="nav-link text-secondary" href="{% url 'exportar-excel' %}"><i class="fas fa-file-excel"></i></a>
+    </div>
+    <div class="col-sm">
+      <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">1</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            <tr>
+              <th scope="row">2</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+              <td>@fat</td>
+            </tr>
+            <tr>
+              <th scope="row">3</th>
+              <td>Larry</td>
+              <td>the Bird</td>
+              <td>@twitter</td>
+            </tr>
+          </tbody>
+      </table>
+    </div>
+    <div class="col-sm">
+      <table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td>Larry</td>
+      <td>the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
     </div>
   </div>
 </div>
-</div>
-<br><br>
+ 
 {% endblock main %}
 
 {% block footer %}

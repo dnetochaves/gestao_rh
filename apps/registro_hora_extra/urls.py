@@ -4,7 +4,9 @@ from .views import (
     HoraExtraUpdate, 
     HoraExtraDelete, 
     HoraExtraCreate,
-    UtilizouHoraExtra
+    UtilizouHoraExtra,
+    ExportarParaCSV,
+    ExportarExcel
 )
 
 from django.urls import path
@@ -17,6 +19,8 @@ urlpatterns = [
     path('deletar/<int:pk>/', HoraExtraDelete.as_view(), name='hora_extra_delete'),
     path('utilizou-hora-extra/<int:pk>/',
          UtilizouHoraExtra.as_view(), name='utilizou_hora_extra'),
+    path('exportar-csv/', ExportarParaCSV.as_view(), name='exportar-csv'),
+    path('exportar-excel/', ExportarExcel.as_view(), name='exportar-excel'),
 ]
 
 
